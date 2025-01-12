@@ -20,8 +20,7 @@ keymap.set('n', '<C-Left>', ':bprev<Return>', opts_noremap)
 keymap.set('n', '<C-Right>', ':bnext<Return>', opts_noremap)
 
 -- Terminal: full height, please
-keymap.set('n', '<C-_>', function()
-  vim.cmd 'normal! "stopinsert"'
+local toggle_terminal = function()
   Snacks.terminal(nil, {
     cwd = vim.loop.cwd(),
     win = {
@@ -29,7 +28,10 @@ keymap.set('n', '<C-_>', function()
       height = 0,
     },
   })
-end, opts_noremap)
+end
+
+keymap.set('n', '<C-_>', toggle_terminal, opts_noremap)
+keymap.set('t', '<C-_>', toggle_terminal, opts_noremap)
 
 -- Select all
 keymap.set('n', '<C-a>', 'gg<S-v>G')
