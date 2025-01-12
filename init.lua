@@ -466,6 +466,9 @@ require('lazy').setup({
                 disable = {
                   'missing-fields',
                 },
+                telemetry = {
+                  enable = false,
+                },
               },
             },
           },
