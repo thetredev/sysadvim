@@ -57,6 +57,9 @@ vim.api.nvim_create_autocmd('VimEnter', {
     if next(buffer_lines) == nil then
       -- Remove buffer from the buffer list
       vim.cmd 'silent! bw'
+
+      -- Toggle NvimTree
+      vim.cmd 'NvimTreeToggle'
     end
   end,
 })

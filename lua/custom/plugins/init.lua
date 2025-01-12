@@ -28,7 +28,10 @@ return {
         vim.keymap.del('n', '<C-e>', { buffer = bufnr })
       end
 
-      require('nvim-tree').setup { on_attach = my_on_attach }
+      require('nvim-tree').setup {
+        on_attach = my_on_attach,
+        hijack_netrw = false,
+      }
     end,
   },
 }
