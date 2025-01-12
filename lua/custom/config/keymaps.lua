@@ -52,6 +52,7 @@ keymap.set('i', '<C-Left>', '<Esc>bi', opts_noremap)
 keymap.set('i', '<C-Right>', '<Esc>ei', opts_noremap)
 keymap.set('n', '<C-R>', '<Leader>cr', opts_remap)
 keymap.set('n', '<C-r>', ':redo<Return>', opts_remap)
+keymap.set('v', '<C-r>', ':s/', {})
 
 -- Compiler
 vim.keymap.set('n', 'bb', '<Leader>ftdevbox run build<Return>', opts_remap)
