@@ -40,25 +40,36 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   end,
 })
 
--- Disable netrw
-vim.api.nvim_create_augroup('userconfig', { clear = true })
-vim.api.nvim_create_autocmd('VimEnter', {
-  group = 'userconfig',
-  pattern = '*',
-  command = 'silent! au! FileExplorer *',
+-- Autocmds
+vim.api.nvim_create_augroup('sysadvim', {
+  clear = true,
 })
 
--- Remove empty buffer on start
-vim.api.nvim_create_augroup('userconfig', { clear = true })
 vim.api.nvim_create_autocmd('VimEnter', {
-  group = 'userconfig',
+  group = 'sysadvim',
   pattern = '*',
-  command = 'silent! bw',
+  callback = function()
+    -- Disable netrw
+    vim.cmd 'silent! au! FileExplorer *'
+
+    -- If current buffer contains no lines (from readline line 1 to 2, ignoring any errors)...
+    local buffer_lines = vim.api.nvim_buf_get_lines(0, 1, 3, false)
+    if next(buffer_lines) == nil then
+      -- Remove buffer from the buffer list
+      vim.cmd 'silent! bw'
+
+      -- Run Alpha if the git root directory was opened
+      local git_dir = vim.fn.finddir('.git', vim.fn.expand '%:p:h' .. ';')
+      if git_dir ~= '' then
+        vim.cmd 'Alpha'
+      end
+    end
+  end,
 })
 
 -- Remember last editing position
 vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
-  group = 'userconfig',
+  group = 'sysadvim',
   desc = 'return cursor to where it was last time closing the file',
   pattern = '*',
   command = 'silent! normal! g`"zv',
