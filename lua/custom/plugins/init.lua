@@ -34,4 +34,10 @@ return {
       }
     end,
   },
+  {
+    'albenisolmos/autochdir.nvim',
+    opts = {
+      keep_dir = true,
+    },
+  },
 }
