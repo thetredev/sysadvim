@@ -1,0 +1,66 @@
+local keymap = vim.keymap
+
+local opts_remap = {
+  remap = true,
+  silent = true,
+}
+
+local opts_noremap = {
+  noremap = true,
+  silent = true,
+}
+
+-- Window navigation
+keymap.set('n', '<A-Up>', '<C-w>k', opts_remap)
+keymap.set('n', '<A-Down>', '<C-w>j', opts_remap)
+keymap.set('n', '<A-Left>', '<C-w>h', opts_remap)
+keymap.set('n', '<A-Right>', '<C-w>l', opts_remap)
+keymap.set('n', '<C-Up>', '<C-w>w', opts_remap)
+keymap.set('n', '<C-Left>', ':bprev<Return>', opts_noremap)
+keymap.set('n', '<C-Right>', ':bnext<Return>', opts_noremap)
+
+-- Terminal: full height, please
+keymap.set('n', '<C-_>', function()
+  vim.cmd 'normal! "stopinsert"'
+  Snacks.terminal(nil, {
+    cwd = vim.loop.cwd(),
+    win = {
+      relative = 'editor',
+      height = 0,
+    },
+  })
+end, opts_noremap)
+
+-- Select all
+keymap.set('n', '<C-a>', 'gg<S-v>G')
+
+-- Dashboard
+keymap.set('n', '<C-e>', ':Alpha<Return>')
+
+-- Files
+keymap.set('n', '<C-s>', ':w<Return>', opts_noremap)
+keymap.set('i', '<C-s>', '<Esc>:w<Return>', opts_noremap)
+keymap.set('n', '<C-d>', ':bw<Esc>', opts_noremap)
+keymap.set('n', '<C-q>', ':qa!<Return>', opts_noremap)
+
+-- Code
+keymap.set('i', '<C-Left>', '<Esc>bi', opts_noremap)
+keymap.set('i', '<C-Right>', '<Esc>ei', opts_noremap)
+keymap.set('n', '<C-R>', '<Leader>cr', opts_remap)
+keymap.set('n', '<C-r>', ':redo<Return>', opts_remap)
+
+-- Compiler
+vim.keymap.set('n', 'bb', '<Leader>ftdevbox run build<Return>', opts_remap)
+vim.keymap.set('n', 'RR', '<Leader>ftdevbox run release<Return>', opts_remap)
+vim.keymap.set('n', 'rr', '<Leader>ftdevbox run . ', opts_remap)
+
+-- Tabs
+keymap.set('n', 'te', ':tabedit')
+keymap.set('n', '<tab>', ':tabnext<Return>', opts_noremap)
+keymap.set('n', '<s-tab>', ':tabprev<Return>', opts_noremap)
+keymap.set('n', 'tw', ':tabclose<Return>', opts_noremap)
+
+-- Diagnostics
+keymap.set('n', '<C-j>', function()
+  vim.diagnostic.goto_next()
+end, opts_noremap)
