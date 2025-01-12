@@ -48,6 +48,14 @@ vim.api.nvim_create_autocmd('VimEnter', {
   command = 'silent! au! FileExplorer *',
 })
 
+-- Remove empty buffer on start
+vim.api.nvim_create_augroup('userconfig', { clear = true })
+vim.api.nvim_create_autocmd('VimEnter', {
+  group = 'userconfig',
+  pattern = '*',
+  command = 'silent! bw',
+})
+
 -- Remember last editing position
 vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   group = 'userconfig',
