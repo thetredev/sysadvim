@@ -39,7 +39,7 @@ keymap.set('t', '<C-D>', 'exit 0<Return>', opts_noremap)
 keymap.set('n', '<C-a>', 'gg<S-v>G')
 
 -- File exporer
-keymap.set('n', '<C-e>', ':NvimTreeToggle<Return>', opts_remap)
+keymap.set('n', '<C-e>', ':NvimTreeToggle .<Return>', opts_remap)
 
 -- Files
 keymap.set('n', '<C-s>', ':w<Return>', opts_noremap)
