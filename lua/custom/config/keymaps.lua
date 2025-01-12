@@ -36,8 +36,8 @@ keymap.set('t', '<C-_>', toggle_terminal, opts_noremap)
 -- Select all
 keymap.set('n', '<C-a>', 'gg<S-v>G')
 
--- Dashboard
-keymap.set('n', '<C-e>', ':Alpha<Return>')
+-- File exporer
+keymap.set('n', '<C-e>', ':NvimTreeToggle<Return>', opts_remap)
 
 -- Files
 keymap.set('n', '<C-s>', ':w<Return>', opts_noremap)

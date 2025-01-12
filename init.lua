@@ -57,12 +57,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
     if next(buffer_lines) == nil then
       -- Remove buffer from the buffer list
       vim.cmd 'silent! bw'
-
-      -- Run Alpha if the git root directory was opened
-      local git_dir = vim.fn.finddir('.git', vim.fn.expand '%:p:h' .. ';')
-      if git_dir ~= '' then
-        vim.cmd 'Alpha'
-      end
     end
   end,
 })

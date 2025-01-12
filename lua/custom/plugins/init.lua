@@ -18,15 +18,17 @@ return {
     },
   },
   {
-    'goolord/alpha-nvim',
-    event = 'VimEnter',
-    lazy = false,
-    priority = 1000,
-    dependencies = {
-      'echasnovski/mini.icons',
-    },
+    'nvim-tree/nvim-tree.lua',
     config = function()
-      require('alpha').setup(require('alpha.themes.startify').config)
+      local api = require 'nvim-tree.api'
+      local function my_on_attach(bufnr)
+        api.config.mappings.default_on_attach(bufnr)
+
+        -- Remove default keybinding to C-e to allow for our own
+        vim.keymap.del('n', '<C-e>', { buffer = bufnr })
+      end
+
+      require('nvim-tree').setup { on_attach = my_on_attach }
     end,
   },
 }
