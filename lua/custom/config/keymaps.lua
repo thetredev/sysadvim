@@ -58,6 +58,16 @@ vim.keymap.set('n', 'bb', '<Leader>ftdevbox run build<Return>', opts_remap)
 vim.keymap.set('n', 'RR', '<Leader>ftdevbox run release<Return>', opts_remap)
 vim.keymap.set('n', 'rr', '<Leader>ftdevbox run . ', opts_remap)
 
+-- Lua
+vim.keymap.set('n', '<Leader>l', function()
+  local win = vim.api.nvim_get_current_win()
+  local buffer_lines = vim.api.nvim_buf_get_lines(0, 1, 3, false)
+  local tree_view = require 'nvim-tree.view'
+  if next(buffer_lines) ~= nil and tree_view.get_winnr() ~= win then
+    vim.cmd 'source'
+  end
+end, opts_noremap)
+
 -- Tabs
 keymap.set('n', 'te', ':tabedit')
 keymap.set('n', '<tab>', ':tabnext<Return>', opts_noremap)
