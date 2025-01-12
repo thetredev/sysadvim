@@ -179,6 +179,15 @@ require('lazy').setup({
     },
     config = function()
       require('telescope').setup {
+        -- Sort by last recently modified, ascending
+        defaults = {
+          sorting_strategy = 'ascending',
+        },
+        pickers = {
+          find_files = {
+            find_command = { 'rg', '--files', '--sortr=modified' },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
