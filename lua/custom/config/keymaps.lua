@@ -64,6 +64,11 @@ keymap.set('n', '<tab>', ':tabnext<Return>', opts_noremap)
 keymap.set('n', '<s-tab>', ':tabprev<Return>', opts_noremap)
 keymap.set('n', 'tw', ':tabclose<Return>', opts_noremap)
 
+-- Git
+keymap.set('n', 'gb', function()
+  Snacks.gitbrowse()
+end, opts_noremap)
+
 -- Diagnostics
 keymap.set('n', '<C-j>', function()
   vim.diagnostic.goto_next()
