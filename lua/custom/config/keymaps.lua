@@ -32,6 +32,7 @@ end
 
 keymap.set('n', '<C-_>', toggle_terminal, opts_noremap)
 keymap.set('t', '<C-_>', toggle_terminal, opts_noremap)
+keymap.set('t', '<C-d>', toggle_terminal, opts_noremap)
 
 -- Select all
 keymap.set('n', '<C-a>', 'gg<S-v>G')
