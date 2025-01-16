@@ -21,7 +21,7 @@ keymap.set('n', '<C-Right>', ':bnext<Return>', opts_noremap)
 
 -- Terminal: full height, please
 local toggle_terminal = function()
-  Snacks.terminal(nil, {
+  Snacks.terminal.toggle('/bin/bash', {
     cwd = vim.loop.cwd(),
     win = {
       relative = 'editor',
